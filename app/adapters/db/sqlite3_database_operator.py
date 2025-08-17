@@ -1,7 +1,7 @@
 import sqlite3
 from typing import Dict, Any, List, Optional, Tuple
 
-from db_operator.database_operator import DatabaseOperator
+from app.ports.db.database_operator import DatabaseOperator
 
 
 class Sqlite3DatabaseOperator(DatabaseOperator):

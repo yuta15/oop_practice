@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS todos (
     content TEXT,
     status BOOLEAN NOT NULL,
     start_date DATE NOT NULL,
-    limit_date DATE NOT NULL
+    limit_date DATE NOT NULL,
+    version INTEGER NOT NULL
 );
 CREATE TABLE IF NOT EXISTS user_todos (
     user_uuid TEXT NOT NULL,

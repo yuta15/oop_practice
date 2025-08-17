@@ -1,4 +1,4 @@
-import uuid
+import uuid as lib_uuid
 import datetime
 
 from pydantic import BaseModel, Field, field_validator
@@ -8,12 +8,13 @@ class Todo(BaseModel):
     """
     Todo Class
     """
-    uuid: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    uuid: lib_uuid.UUID = Field(default_factory=lib_uuid.uuid4)
     title: str
     content: str | None = None
-    start_date: datetime.date = datetime.date.today()
-    limit_date: datetime.date = datetime.date.today()
+    start_date: datetime.date = Field(default_factory=datetime.date.today)
+    limit_date: datetime.date = Field(default_factory=datetime.date.today)
     status: bool = False
+    version: int = 0
 
     model_config = {
         "validate_assignment": True,
@@ -33,6 +34,11 @@ class Todo(BaseModel):
     def mark_done(self) -> None:
         """Mark the todo item as done."""
         self.status = True
+
+
+    def mark_undone(self) -> None:
+        """Mark the todo item as done."""
+        self.status = False
 
 
     def set_start_date(self, start_date: datetime.date) -> None:
